@@ -69,3 +69,18 @@ const posts = [
 //2. Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola > LF).
 
 //3. Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
+
+//ricreo un feed social
+
+const feed = document.getElementById("container");
+
+for (i = 0; i < posts.length; i++) {
+    const postLayout = posts[i];
+    const post = document.getElementById("template").content.cloneNode(true);
+    post.querySelector(".post-meta__author").innerHTML = postLayout.author.name;
+    post.querySelector(".post-meta__time").innerHTML = postLayout.created;
+    post.querySelector(".post__text").innerHTML = postLayout.content;
+    post.querySelector(".post__image").innerHTML = `<img src =${postLayout.media}>`
+    post.querySelector(".js-likes-counter").innerHTML = postLayout.likes;
+    feed.append(post);
+}
